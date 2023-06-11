@@ -40,6 +40,6 @@ jobs:
 
     - name: Access secret
       env:
-        API_KEY: ${{ secrets.BOT_API_KEY }}
+        BOT_API_TOKEN: ${{ secrets.BOT_API_TOKEN }}
       run: |
-        echo $API_KEY
+        echo "Load BOT_API_TOKEN"

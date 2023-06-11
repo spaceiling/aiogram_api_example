@@ -8,9 +8,13 @@ from aiogram.dispatcher.filters import Text
 from messages import MESSAGES
 from stickers import STICKERS
 import keyboards as kb
-from config import BOT_API_TOKEN
 
-bot = Bot(token=BOT_API_TOKEN)
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+bot = Bot(token=os.getenv("BOT_API_TOKEN"))
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 @dp.message_handler(Command('start'), state='*')

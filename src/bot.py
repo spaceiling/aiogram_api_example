@@ -5,9 +5,9 @@ from aiogram.dispatcher.filters import Command
 from aiogram.utils import executor
 from aiogram.dispatcher.filters import Text
 
-from messages import MESSAGES
-from stickers import STICKERS
-import keyboards as kb
+from src.messages import MESSAGES
+from src.stickers import STICKERS
+import src.keyboards as kb
 
 from dotenv import load_dotenv
 import os
@@ -24,11 +24,11 @@ async def start(message: types.Message):
                            reply_markup=kb.greet_kb, parse_mode='Markdown')
 
 @dp.message_handler(Text(equals='Привет! 👋'))
-async def gender_button_click(message: types.Message):
+async def hello_button_click(message: types.Message):
     await bot.send_message(message.chat.id, f"{message.from_user.first_name}, {MESSAGES['finish_onboarding']}")
 
 @dp.message_handler(commands=['help'])
-async def list_preferences(message: types.Message):
+async def help(message: types.Message):
     await bot.send_message(message.chat.id, f"{MESSAGES['help']}", reply_markup=None)
 
 async def on_shutdown(dispatcher: Dispatcher):

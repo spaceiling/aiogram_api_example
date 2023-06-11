@@ -12,9 +12,14 @@ import src.keyboards as kb
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+if os.getenv("GITHUB_ACTIONS"):
+    bot_token = os.getenv("BOT_API_TOKEN")
+else:
+    load_dotenv()
+    bot_token = os.getenv("BOT_API_TOKEN")
 
-bot = Bot(token=os.getenv("BOT_API_TOKEN"))
+
+bot = Bot(token=bot_token)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 @dp.message_handler(Command('start'), state='*')
